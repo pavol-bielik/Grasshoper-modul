@@ -17,7 +17,7 @@ using Tektosyne;
 using System.Windows.Forms;
 
 //test git
-
+// test martin
 namespace SpaceSyntaxComponent
 {
     public class SpaceSyntaxComponent : GH_Component
