@@ -1,0 +1,10 @@
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\obj\Debug\SpaceSyntaxComponent.dll
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\obj\Debug\SpaceSyntaxComponent.pdb
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\SpaceSyntaxComponent.dll
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\SpaceSyntaxComponent.pdb
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\GeoObj.dll
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\Tektosyne.Core.dll
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\netDxf.dll
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\GeoObj.pdb
+C:\Users\belco\Documents\Kremlas\trunc\applications\SpaceSyntax_GHA\SpaceSyntaxComponent\SpaceSyntaxComponent\bin\Tektosyne.Core.xml
