@@ -1,0 +1,8 @@
+obj
+bin
+Bin
+ClientBin
+*.csproj.user
+*.suo
+DataSources
+TestResults
