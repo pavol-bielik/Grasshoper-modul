@@ -15,11 +15,13 @@ using Tektosyne.Geometry;
 using Tektosyne.Collections;
 using Tektosyne;
 using System.Windows.Forms;
+using System.Linq;
 
 //test git
 // test martin
 namespace SpaceSyntaxComponent
 {
+    
     public class SpaceSyntaxComponent : GH_Component
     {
         public SpaceSyntaxComponent()
@@ -37,24 +39,55 @@ namespace SpaceSyntaxComponent
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.Register_DoubleParam("Number", "N", "Analysis results");
+            pManager.Register_LineParam("Line", "L", "Resulted structure");
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
         
        {
             List<Line> lineList = new List<Line>();
+            List<Line> lineListInput = new List<Line>();
             List<LineD> lineDList = new List<LineD>();
             LineD[] currLinesArr;
             Subdivision InverseGraph;
-            float[] result;
          
             Dictionary<PointD, LineD> InverseEdgesMapping = new Dictionary<PointD,LineD>();
             Dictionary<LineD, double> RealDist = new Dictionary<LineD,double>();
             Dictionary<LineD, double> RealAngle = new Dictionary<LineD,double>();
 
-            if (DA.GetDataList(0, lineList)) //If it works...
+            if (DA.GetDataList(0, lineListInput)) //If it works...
             {
+                // sort out duplicate Lines
+                //========================================================
+                List<Point3d> mPointList = new List<Point3d>();
+                foreach (Line mLine in lineListInput)
+                {
+                    //compute middle points
+                    Point3d middle = (mLine.From + mLine.To) * 0.5;
+                    mPointList.Add(middle);
+                }
+                // add lines and middle points to dictionary
+                Dictionary<Point3d, Line> inputMap = new Dictionary<Point3d, Line>();
+                for (int i = 0; i < mPointList.Count; i++)
+                {
+                    if (inputMap.ContainsKey(mPointList[i]))
+                        continue;
+                    inputMap.Add(mPointList[i], lineListInput[i]);
+                }
+                lineList = inputMap.Values.ToList();
+
+                /*
+                // filter duplicate points
+                mPointList = mPointList.Distinct().ToList();
+                for (int i = 0; i < lineListInput.Count; i++)
+                {
+                    Point3d point = mPointList[i];
+                    lineList[i] = inputMap[point];
+                }*/
+
+                //======================================================================
                 foreach (Line a in lineList)
+
                 {
                     if (a.IsValid)
                     {
@@ -83,7 +116,7 @@ namespace SpaceSyntaxComponent
 
                     LineD curEdge;
                 
-                    float[] finRes = new float[curVertices.Count];
+                    float[] finRes = new float[lineDList.Count];
                     float[] tempRes = ShortPahtesMetric.GetNormChoiceArray();
                     for (int i = 0; i < curVertices.Count; i++)
                     {
@@ -94,12 +127,9 @@ namespace SpaceSyntaxComponent
                         finRes[idx] = tempRes[i];
                         
                     }
-
-                    
-
-
-                 
+           
                 DA.SetDataList(0, new List<float>(finRes));
+                DA.SetDataList(1, lineList);
             }
         }
 
@@ -112,5 +142,12 @@ namespace SpaceSyntaxComponent
 
             }
         }
+
+        private float map(float value, float low1, float high1, float low2, float high2)
+        {
+            float newValue = ((value - low1) * (high2 - low2) / (high1 - low1)) + low2;
+            return (newValue);
+        }
+
     }
 }
